@@ -5,6 +5,7 @@ import { robots } from './robots'
 import { render } from '@testing-library/react'
 import './App.css'
 
+// class APP
 class App extends Component {
     constructor() {
         super()
