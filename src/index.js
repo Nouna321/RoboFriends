@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
 import './index.css'
 import App from './Containers/App'
 import reportWebVitals from './reportWebVitals'
 import 'tachyons'
-import { searchRobots } from './Reducers'
+import { searchRobots, requestRobots } from './Reducers'
 
-const store = createStore(searchRobots)
+const logger = createLogger()
+
+const rootReducer = combineReducers({ searchRobots, requestRobots })
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
 
 ReactDOM.render(
     <React.StrictMode>
